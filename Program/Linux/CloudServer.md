@@ -85,3 +85,13 @@ source /etc/profile
 
 ## Https配置
 [在腾讯云上搭建SSL证书实现https访问（Nginx)](https://segmentfault.com/a/1190000015583348)
+
+## 解决Github clone速度慢的问题
+github 的库在国内比较慢，我们可以将github 的库导入到gitee上，然后通过从gitee 上clone，再修改远程库源地址
+```
+# 查看源地址
+git remote -v
+
+#修改源地址
+git remote set-url origin [new url]
+```
