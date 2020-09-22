@@ -82,3 +82,6 @@ source /etc/profile
 ```
 ### 查看版本
 `git version`
+
+## Https配置
+[在腾讯云上搭建SSL证书实现https访问（Nginx)](https://segmentfault.com/a/1190000015583348)
