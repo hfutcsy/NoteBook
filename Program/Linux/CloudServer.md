@@ -155,3 +155,16 @@ yum install mysql-server
 + 改变初始密码
 `mysqladmin -u root -p password [newpassword]`
 然后输入旧密码
+
+### 高版本mysql兼容性问题
+在尝试部署一个聊天网站时，后端server启动时报错
+ER_NOT_SUPPORTED_AUTH_MODE: Client does not support authentication protocol requested by server; consider upgrading MySQL client
+
+原来这个错误是因为8.0mysql引入了caching_sha2_password模块作为默认身份验证插件，nodejs还没有跟进。
+
+解决办法，进入mysql命令行，输入
+```
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '自己的密码';
+```
+[参考链接]<https://www.cnblogs.com/iceorrange/p/10302105.html>
+
