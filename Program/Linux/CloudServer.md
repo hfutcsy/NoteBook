@@ -3,7 +3,7 @@
 + 腾讯云控制台扫码登入
 + SSH 登入
   ```
-  ssh <username>@<hostname or IP address>
+  ssh <username>@<hostname or IP address> -p portalnumber
   ```
 ## 查看linux系统CPU及version
   ```
@@ -95,3 +95,63 @@ git remote -v
 #修改源地址
 git remote set-url origin [new url]
 ```
+## 安装配置Nginx
+### Nginx安装
+[参考链接]<https://www.cnblogs.com/xxoome/p/5866475.html>
++ Nginx 安装地址 <https://nginx.org/download>
+选择最新稳定版本nginx-1.18.0.tar.gz下载
+```
+# 下载
+wget https://nginx.org/download/nginx-1.18.0.tar.gz
+
+# 解压
+tar -zxvf nginx-1.18.0.tar.gz
+
+# 进入nginx目录
+cd nginx-1.9.9
+
+# 配置
+./configure --prefix=/usr/local/nginx
+
+# make
+make
+make install
+
+# 测试是否安装成功
+cd /usr/loca/nginx/
+./sbin/nginx -t
+
+# 启动nginx
+cd /usr/local/nginx/sbin
+./nginx //启动nginx
+```
+### Nginx配置
++ 配置自启动
+```
+vim /etc/rc.d/rc.local
+
+# touch那一行下添加一行
+/usr/local/nginx/sbin/nginx
+
+```
+
+## 安装mysql
+[参考链接]<https://www.runoob.com/mysql/mysql-install.html>
+yum默认的下载列表里没有mysql，所以先下载资源包。
+资源包地址
+<https://dev.mysql.com/downloads/>
+
+```
+# 下载资源包
+wge https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+
+rpm -ivh mysql-community-release-el7-5.noarch.rpm
+yum update
+yum install mysql-server
+```
++ mysql 日志中可以查看初始密码
+
+`vim /var/log/mysqld.log`
++ 改变初始密码
+`mysqladmin -u root -p password [newpassword]`
+然后输入旧密码
